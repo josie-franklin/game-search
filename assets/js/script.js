@@ -1,12 +1,39 @@
 //init function that displays previous searches from local storage
-//  var savedSearchesObj = JSON.parse(localStorage.getItem("savedSearchesObj")) || [];
+//var savedSearchesObj = JSON.parse(localStorage.getItem("savedSearchesObj")) || [];
 
-$("#game-btn").on("click", gameFetchResponse);
-$("#genre-btn").on("click", genreFetchResponse);
+$("#game-btn").on("click", gameInputHandler);
+$("#genre-btn").on("click", genreInputHandler);
+
+function gameInputHandler() {
+  var gameInput = $("#game-input").val().trim();
+  if (gameInput === "" || null) {
+    //placeholder window alert
+    window.alert("Please enter a game.");
+    //needs to dynamically display some alert on the page. examples commented out.
+    //   var alertContainerEl = $("#alert").text("");
+    //   var alertTextEl = $("<p>").text("Please enter a game.");
+    //   alertContainerEl.append(alertTextEl);
+  } else {
+    gameFetchResponse(gameInput);
+  }
+}
+
+function genreInputHandler() {
+  var genreInput = $("#genre-input").val().trim();
+  if (genreInput === "" || null) {
+    //placeholder window alert
+    window.alert("Please enter a genre.");
+    //needs to dynamically display some alert on the page. examples commented out.
+    //   var alertContainerEl = $("#alert").text("");
+    //   var alertTextEl = $("<p>").text("Please enter a genre.");
+    //   alertContainerEl.append(alertTextEl);
+  } else {
+    genreFetchResponse(genreInput);
+  }
+}
 
 //fetch and response handling for game search (use one API)
-function gameFetchResponse() {
-  var gameInput = $("#game-input").val().trim();
+function gameFetchResponse(gameInput) {
   var fetchUrl = "https://whatoplay.p.rapidapi.com/search?game=" + gameInput;
 
   //fetch variables from whattoplay documentation start
@@ -22,28 +49,34 @@ function gameFetchResponse() {
   fetch(fetchUrl, options)
     .then((response) => response.json())
     .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err)); //200 error (can't connect)
 
-  //   if response works, searchHandler
-  //   if 400, searchErrorHandler
-  //   if 200, searchConnectionErrorHandler
+  //   if response works, gameSearchHandler
+  //   if 400 error, gameNotFoundHandler (currently just logs and empty array if game not found)
 }
 
-//fetch and response handling for genre search (use a different API, probably gamebomb)
+//fetch and response handling for genre search (use a different API, probably gamebomb) (does not currently work)
 //my user key for giantbomb: 74396db661dc842e2e30773ee2aa76fbd447cbc1
 //----------------------------------------------------------------------------------------
-function genreFetchResponse() {
-  var genreInput = $("#genre-input").val().trim();
+function genreFetchResponse(genreInput) {
   var genreFetchUrl =
     "https://www.giantbomb.com/api/game/3030-4725/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1"; //url works in browser bar, not in html
 
-  fetch(genreFetchUrl).then(function (response) {
-    console.log(response.json());
-  });
+  const options = {
+    method: "GET",
+    headers: {
+      host: "url",
+      key: "keystring",
+    },
+  };
 
-  //if response works, searchHandler
-  //if 400, searchErrorHandler
-  //if 200, searchConnectionErrorHandler
+  fetch(genreFetchUrl)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err)); //200 error (can't connect)
+
+  //if response works, genreSearchHandler
+  //if 400, genreNotFoundHandler
 }
 //----------------------------------------------------------------------------------------
 
