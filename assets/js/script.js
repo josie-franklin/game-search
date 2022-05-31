@@ -7,12 +7,10 @@ $("#genre-btn").on("click", genreInputHandler);
 function gameInputHandler() {
   var gameInput = $("#game-input").val().trim();
   if (gameInput === "" || null) {
-    //placeholder window alert
-    window.alert("Please enter a game.");
-    //needs to dynamically display some alert on the page. examples commented out.
-    //   var alertContainerEl = $("#alert").text("");
-    //   var alertTextEl = $("<p>").text("Please enter a game.");
-    //   alertContainerEl.append(alertTextEl);
+    //alert text if nothing is inputted
+      var gameAlertContainerEl = $("#game-alert-container").text("");
+      var gameAlertTextEl = $("<p>").text("Please enter a game.");
+      gameAlertContainerEl.append(gameAlertTextEl);
   } else {
     gameFetchResponse(gameInput);
   }
@@ -21,12 +19,10 @@ function gameInputHandler() {
 function genreInputHandler() {
   var genreInput = $("#genre-input").val().trim();
   if (genreInput === "" || null) {
-    //placeholder window alert
-    window.alert("Please enter a genre.");
     //needs to dynamically display some alert on the page. examples commented out.
-    //   var alertContainerEl = $("#alert").text("");
-    //   var alertTextEl = $("<p>").text("Please enter a genre.");
-    //   alertContainerEl.append(alertTextEl);
+      var genreAlertContainerEl = $("#genre-alert-container").text("");
+      var genreAlertTextEl = $("<p>").text("Please enter a genre.");
+      genreAlertContainerEl.append(genreAlertTextEl);
   } else {
     genreFetchResponse(genreInput);
   }
