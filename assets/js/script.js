@@ -8,9 +8,9 @@ function gameInputHandler() {
   var gameInput = $("#game-input").val().trim();
   if (gameInput === "" || null) {
     //alert text if nothing is inputted
-      var gameAlertContainerEl = $("#game-alert-container").text("");
-      var gameAlertTextEl = $("<p>").text("Please enter a game.");
-      gameAlertContainerEl.append(gameAlertTextEl);
+    var gameAlertContainerEl = $("#game-alert-container").text("");
+    var gameAlertTextEl = $("<p>").text("Please enter a game.");
+    gameAlertContainerEl.append(gameAlertTextEl);
   } else {
     gameFetchResponse(gameInput);
   }
@@ -19,10 +19,10 @@ function gameInputHandler() {
 function genreInputHandler() {
   var genreInput = $("#genre-input").val().trim();
   if (genreInput === "" || null) {
-    //needs to dynamically display some alert on the page. examples commented out.
-      var genreAlertContainerEl = $("#genre-alert-container").text("");
-      var genreAlertTextEl = $("<p>").text("Please enter a genre.");
-      genreAlertContainerEl.append(genreAlertTextEl);
+    //alert text if nothing is inputted
+    var genreAlertContainerEl = $("#genre-alert-container").text("");
+    var genreAlertTextEl = $("<p>").text("Please enter a genre.");
+    genreAlertContainerEl.append(genreAlertTextEl);
   } else {
     genreFetchResponse(genreInput);
   }
@@ -32,7 +32,6 @@ function genreInputHandler() {
 function gameFetchResponse(gameInput) {
   var fetchUrl = "https://whatoplay.p.rapidapi.com/search?game=" + gameInput;
 
-  //fetch variables from whattoplay documentation start
   const options = {
     method: "GET",
     headers: {
@@ -40,15 +39,21 @@ function gameFetchResponse(gameInput) {
       "X-RapidAPI-Key": "29b518b889msh6fc361b3b9aec26p1e1231jsnc655b8c71d9a",
     },
   };
-  //fetch variables from whattoplay documentation end
 
   fetch(fetchUrl, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
+    .then((response) => checkForGame(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
 
-  //   if response works, gameSearchHandler
-  //   if 400 error, gameNotFoundHandler (currently just logs and empty array if game not found)
+  function checkForGame(response) {
+    if (response.length === 0) {
+      var gameAlertContainerEl = $("#game-alert-container").text("");
+      var gameAlertTextEl = $("<p>").text("No game was found.");
+      gameAlertContainerEl.append(gameAlertTextEl);
+    } else {
+      console.log(response); //replace console log with gameSearchHandler once it works
+    }
+  }
 }
 
 //fetch and response handling for genre search (use a different API, probably gamebomb) (does not currently work)
@@ -76,10 +81,11 @@ function genreFetchResponse(genreInput) {
 }
 //----------------------------------------------------------------------------------------
 
-//searchHandler
-//save genre or game title to local storage (savedSearchesObj) (wait for an ok response)
+//gameSearchHandler
+//empty alert container
+//save game title to local storage (savedSearchesObj)
 //display new saved search to the saved searches buttons
-//if saved searha already exists, don't create a new button
+//if saved search already exists, don't create a new button
 //display search results (game list)
 //event listener on each of the results (probably an <a> tag) that runs fetchReview
 
@@ -89,7 +95,7 @@ function genreFetchResponse(genreInput) {
 //if 400, gameErrorHandler
 //if 200, gameConnectionErrorHandler
 
-//gameHandler
+//gameReviewHandler
 //save game to local storage (savedGamesObj)
 //display new saved game to the saved games buttons
 //if saved game already exists, dont create a new button
