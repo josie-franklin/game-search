@@ -46,7 +46,7 @@ function gameFetchResponse(gameInput) {
   };
   //fetch variables from whattoplay documentation end
 
-  fetch(fetchUrl, options)
+  fetch(fetchUrl)
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
@@ -60,17 +60,34 @@ function gameFetchResponse(gameInput) {
 //----------------------------------------------------------------------------------------
 function genreFetchResponse(genreInput) {
   var genreFetchUrl =
-    "https://www.giantbomb.com/api/game/3030-4725/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1"; //url works in browser bar, not in html
+    "http://api.giantbomb.com/game/1/?api_key=4396db661dc842e2e30773ee2aa76fbd447cbc1&format=jsonp&json_callback=genreInput"; //url works in browser bar, not in html
+
+$.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    crossDomain: true,
+    jsonp: 'json_callback',
+    url: genreFetchUrl
+  })
+    .then(function (data) {
+      localStorage.setItem('data', JSON.stringify(data));
+    })
+    .then(function () {
+      location.assign("results.html")
+    });
+
 
   const options = {
     method: "GET",
     headers: {
-      host: "url",
-      key: "keystring",
+        "mode": "no-cors",
+        'Access-Control-Allow-Origin': '*',
+      "GiantBomb-Host": "https://www.giantbomb.com/api/",
+      "GiantBomb-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
     },
   };
 
-  fetch(genreFetchUrl)
+  fetch(genreFetchUrl, options)
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
@@ -78,6 +95,7 @@ function genreFetchResponse(genreInput) {
   //if response works, genreSearchHandler
   //if 400, genreNotFoundHandler
 }
+
 //----------------------------------------------------------------------------------------
 
 //searchHandler
