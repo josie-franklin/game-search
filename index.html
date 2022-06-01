@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body>
-    <input id="game-input" type="text">
-    <button id="game-btn">Search</button>
+<body class="bg-slate-500">
+  <header class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono ">GAME-SEARCH
+
+  </header>
+  
+  <div class="container mx-auto px-10 flex items-center row justify-start">
+  <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="game-input" type="text">
+    <button class="font-sans text-slate-100 items-start" id="game-btn"> Search Game</button>
     <div id="game-alert-container"></div>
     
-    <input id="genre-input" type="text">
-    <button id="genre-btn">Search</button>
+    <div class="container mx-auto px-10 flex items-center row justify-end">
+    <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="genre-input" type="text">
+    <button class="font-sans text-slate-100" id="genre-btn"> Search Genre</button>
     <div id="genre-alert-container"></div>
+    </div>
 </body>
   <!-- For jQuery -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
