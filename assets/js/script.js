@@ -61,28 +61,16 @@ function gameFetchResponse(gameInput) {
 //----------------------------------------------------------------------------------------
 function genreFetchResponse(yearInput) {
   var yearFetchUrl =
-    "https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&limit=10&format=json&filter=original_release_date:" + yearInput +"-01-01|" + yearInput + "-12-31"; //url works in browser bar, not in html
-
-
-$.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    crossDomain: true,
-    jsonp: 'json_callback',
-    url: yearFetchUrl
-  })
-    .then(function (data) {
-      localStorage.setItem('data', JSON.stringify(data));
-    })
-    .then(function () {
-      location.assign("results.html")
-    });
-
+  "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&limit=10&format=json&filter=original_release_date:" +
+  yearInput +
+  "-01-01|" +
+  yearInput +
+  "-12-31"
 
   const options = {
     method: "GET",
     headers: {
-        "Demo": "https://robwu.nl/cors-anywhere.html",
+      "Access-Control-Allow-Origin": "http://127.0.0.1:5500/",
       "GiantBomb-Host": "https://www.giantbomb.com/api/",
       "GiantBomb-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
     },
