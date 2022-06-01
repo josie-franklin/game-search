@@ -58,16 +58,16 @@ function gameFetchResponse(gameInput) {
 //fetch and response handling for genre search (use a different API, probably gamebomb) (does not currently work)
 //my user key for giantbomb: 74396db661dc842e2e30773ee2aa76fbd447cbc1
 //----------------------------------------------------------------------------------------
-function genreFetchResponse(genreInput) {
-  var genreFetchUrl =
-    "http://api.giantbomb.com/game/1/?api_key=4396db661dc842e2e30773ee2aa76fbd447cbc1&format=jsonp&json_callback=genreInput"; //url works in browser bar, not in html
+function genreFetchResponse(yearInput) {
+  var yearFetchUrl =
+    "https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&limit=10&format=json&filter=original_release_date:" + yearInput +"-01-01|" + yearInput + "-12-31"; //url works in browser bar, not in html
 
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
     crossDomain: true,
     jsonp: 'json_callback',
-    url: genreFetchUrl
+    url: yearFetchUrl
   })
     .then(function (data) {
       localStorage.setItem('data', JSON.stringify(data));
@@ -87,7 +87,7 @@ $.ajax({
     },
   };
 
-  fetch(genreFetchUrl, options)
+  fetch(yearFetchUrl, options)
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
