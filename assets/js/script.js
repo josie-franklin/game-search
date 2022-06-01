@@ -40,7 +40,7 @@ function gameFetchResponse(gameInput) {
     },
   };
 
-  fetch(fetchUrl)
+  fetch(fetchUrl, options)
     .then((response) => response.json())
     .then((response) => checkForGame(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
@@ -63,6 +63,7 @@ function genreFetchResponse(yearInput) {
   var yearFetchUrl =
     "https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&limit=10&format=json&filter=original_release_date:" + yearInput +"-01-01|" + yearInput + "-12-31"; //url works in browser bar, not in html
 
+
 $.ajax({
     type: 'GET',
     dataType: 'jsonp',
@@ -81,8 +82,7 @@ $.ajax({
   const options = {
     method: "GET",
     headers: {
-        "mode": "no-cors",
-        'Access-Control-Allow-Origin': '*',
+        "Demo": "https://robwu.nl/cors-anywhere.html",
       "GiantBomb-Host": "https://www.giantbomb.com/api/",
       "GiantBomb-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
     },
