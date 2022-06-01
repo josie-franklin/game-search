@@ -112,7 +112,7 @@ function gameSearchHandler(gameData) {
 
 //fetchReview
 function fetchReview() {
-  console.log('replace console log with fetch review function')
+  console.log('function coming soon')
 }
 //fetches reveiw using game title as query (whattoplay API)
 //if response works, gameHandler
