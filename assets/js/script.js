@@ -51,7 +51,7 @@ function gameFetchResponse(gameInput) {
       var gameAlertTextEl = $("<p>").text("No game was found.");
       gameAlertContainerEl.append(gameAlertTextEl);
     } else {
-      console.log(response); //replace console log with gameSearchHandler once it works
+      gameSearchHandler(response);
     }
   }
 }
@@ -82,14 +82,38 @@ function genreFetchResponse(genreInput) {
 //----------------------------------------------------------------------------------------
 
 //gameSearchHandler
-//empty alert container
-//save game title to local storage (savedSearchesObj)
-//display new saved search to the saved searches buttons
-//if saved search already exists, don't create a new button
-//display search results (game list)
-//event listener on each of the results (probably an <a> tag) that runs fetchReview
+function gameSearchHandler(gameData) {
+  //empty alert container
+  $("#game-alert-container").text("");
+  //empty the search result container
+  var searchResultContainer = $("#container").text("");
+  //get the searched game
+  var gameSearch = $("#game-input").val().trim();
+  //get the saved searches from local storage, or an empty array if there isn't one
+  var savedSearchesObj =
+    JSON.parse(localStorage.getItem("savedSearchesObj")) || [];
+  //filter out names that match what was inputted, to avoid duplicates (!!! CURRENTLY SEES CAPS AS DIFFERENT FROM LOWERCASE)
+  savedSearchesObj = savedSearchesObj.filter(function (names) {
+    return names !== gameSearch;
+  });
+  //push the inputted name and save to local storage
+  savedSearchesObj.push(gameSearch);
+  localStorage.setItem("savedSearchesObj", JSON.stringify(savedSearchesObj));
+
+  //TODO: display new saved search to the saved searches buttons
+  //TODO: if saved search already exists, don't create a new button
+
+  //display search results, and add an avant listener to each result
+  gameData.forEach(function (game) {
+    var gameTitleEl = $('<p>').text(game.game_name).on('click', fetchReview);
+    searchResultContainer.append(gameTitleEl);
+  });
+}
 
 //fetchReview
+function fetchReview() {
+  console.log('function coming soon')
+}
 //fetches reveiw using game title as query (whattoplay API)
 //if response works, gameHandler
 //if 400, gameErrorHandler
