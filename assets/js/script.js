@@ -86,7 +86,7 @@ function gameSearchHandler(gameData) {
   //empty alert container
   $("#game-alert-container").text("");
   //empty the search result container
-  var searchResultContainer = $("#container").text("");
+  var searchResultContainer = $("#game-container").text("");
   //get the searched game
   var gameSearch = $("#game-input").val().trim();
   //get the saved searches from local storage, or an empty array if there isn't one
@@ -105,7 +105,7 @@ function gameSearchHandler(gameData) {
 
   //display search results, and add an avant listener to each result
   gameData.forEach(function (game) {
-    var gameTitleEl = $('<p>').text(game.game_name).on('click', fetchReview);
+    var gameTitleEl = $('<p>').text(game.game_name).addClass("text-white text-center").on('click', fetchReview);
     searchResultContainer.append(gameTitleEl);
   });
 }
