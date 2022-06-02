@@ -248,14 +248,14 @@ function fetchReview(gameId) {
     var reviewContainerEl = $('#review-container');
 
     //display game name data.game_name
-    var gameReviewTitleEl = $('<p>').text(reviewInfo.data.game_name);
+    var gameReviewTitleEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text(reviewInfo.data.game_name);
     reviewContainerEl.append(gameReviewTitleEl);
 
     //display overall score
     if(reviewInfo.data.gamerscore === null) {
-    var gameReviewTitleEl = $('<p>').text('No review score was found.');
+    var gameReviewTitleEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('No review score was found.');
     } else {
-      var gameReviewTitleEl = $('<p>').text('Review Score: ', reviewInfo.data,gamerscore);
+      var gameReviewTitleEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Review Score: ', reviewInfo.data.gamerscore);
     }
     reviewContainerEl.append(gameReviewTitleEl);
 
@@ -266,16 +266,16 @@ function fetchReview(gameId) {
       //author
       console.log(review);
       console.log(review.author);
-      var authorEl = $('<p>').addClass('').text('Author: ' + review.author);
+      var authorEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Author: ' + review.author);
       criticReviewContainer.append(authorEl);      
       //critic score
-      var criticScoreEl = $('<p>').addClass('').text('Score: score here');
+      var criticScoreEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Score: score here');
       criticReviewContainer.append(criticScoreEl);  
       //date published
-      var publishedEl = $('<p>').addClass('').text('Date Published: ' + review.date_published);
+      var publishedEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Date Published: ' + review.date_published);
       criticReviewContainer.append(publishedEl);   
       //quote
-      var quoteEl = $('<p>').addClass('').text('Quote: ' + review.qoute);
+      var quoteEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Quote: ' + review.qoute);
       criticReviewContainer.append(quoteEl); 
     })
     reviewContainerEl.append(criticReviewContainer);
