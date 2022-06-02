@@ -6,6 +6,7 @@ $("#genre-btn").on("click", genreInputHandler);
 var gamesInfo = [];
 
 function gameInputHandler() {
+  $('#review-container').text("");
   var gameInput = $("#game-input").val().trim();
   if (gameInput === "" || null) {
     //alert text if nothing is inputted
@@ -18,6 +19,7 @@ function gameInputHandler() {
 }
 
 function genreInputHandler() {
+  $('#review-container').text("");
   var genreInput = $("#genre-input").val().trim();
   if (genreInput === "" || null) {
     //alert text if nothing is inputted
@@ -252,10 +254,17 @@ function fetchReview(gameId) {
     reviewContainerEl.append(gameReviewTitleEl);
 
     //display overall score
+
     if(reviewInfo.data.gamerscore === null) {
     var gameReviewTitleEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('No review score was found.');
     } else {
       var gameReviewTitleEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Review Score: ', reviewInfo.data.gamerscore);
+
+    if(reviewInfo.data.gamerscore === null || undefined) {
+    var gameReviewTitleEl = $('<p>').text('No review score was found.');
+    } else {
+      var gameReviewTitleEl = $('<p>').text('Review Score: ', reviewInfo.data.gamerscore);
+ 
     }
     reviewContainerEl.append(gameReviewTitleEl);
 
@@ -269,7 +278,11 @@ function fetchReview(gameId) {
       var authorEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Author: ' + review.author);
       criticReviewContainer.append(authorEl);      
       //critic score
+
       var criticScoreEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Score: score here');
+
+      var criticScoreEl = $('<p>').addClass('').text('Score: ' + review.criticscore.score + "/" + review.criticscore.best);
+
       criticReviewContainer.append(criticScoreEl);  
       //date published
       var publishedEl = $('<p>').addClass('border-slate-900 text-center decoration-white').text('Date Published: ' + review.date_published);
