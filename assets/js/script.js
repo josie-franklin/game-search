@@ -87,14 +87,14 @@ function genreFetchResponse(genreInput) {
 
   // 2. Call the games api (limit 50)
   var gamesFetchUrl =
-    "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/games/?api_key=073c2f94ba69540e99d2b7e8b4cd3aebb2d9befb&format=json&sort=number_of_user_reviews:desc&limit=50&field_list=guid,id,name,aliases";
+    "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&format=json&sort=number_of_user_reviews:desc&limit=50&field_list=guid,id,name,aliases";
 
   options = {
     method: "GET",
     headers: {
       "Access-Control-Allow-Origin": "http://127.0.0.1:5500/",
       "X-RapidAPI-Host": "https://www.giantbomb.com/api/",
-      "X-RapidAPI-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
+      "X-RapidAPI-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1", //073c2f94ba69540e99d2b7e8b4cd3aebb2d9befb
     },
   };
 
@@ -128,30 +128,32 @@ function genreFetchResponse(genreInput) {
 
       function wrapperFunction(gameResponse) {
         var gameGenres = gameResponse.results.genres;
-        // console.log(gameGenres);
-        gameGenres.forEach(function (genre) {
-          if (genre.name === genreInput) {
-            gamesInfo.push(gamesResponse.results[i]);
-            console.log(gamesInfo);
-          }
-        });
-
-        // for (j = 0; j < gameResponse.results.genres.length; j++) {
-        //   //    b. If the genre matches what we are looking for, add that to an array
-        //   // console.log(gameResponse.results.genres[0].name);
-        //   if (gameResponse.results.genres[0].name == genreInput) {
-        //     gamesInfo.push(gamesResponse.results[i]);
-        //     console.log(gamesInfo);
-        //     break;
-        //   }
-        // }
+        if (gameGenres !== undefined) {
+          gameGenres.forEach(function (genre) {
+            if (genre.name == genreInput) {
+              console.log("match", gameResponse.results.name);
+              // gamesInfo.push(gameResponse.results[i]);
+              // console.log(gamesInfo);
+            }
+          });
+        }
       }
 
-      // //    c. Keep looping until we have the number games we want to show (like we want to present the user with 10 action games, loop until we have 10 action games in our array)
-      // if (gamesInfo.length > 9) {
-      //   break;
+      // for (j = 0; j < gameResponse.results.genres.length; j++) {
+      //   //    b. If the genre matches what we are looking for, add that to an array
+      //   // console.log(gameResponse.results.genres[0].name);
+      //   if (gameResponse.results.genres[0].name == genreInput) {
+      //     gamesInfo.push(gamesResponse.results[i]);
+      //     console.log(gamesInfo);
+      //     break;
+      //   }
       // }
     }
+
+    // //    c. Keep looping until we have the number games we want to show (like we want to present the user with 10 action games, loop until we have 10 action games in our array)
+    // if (gamesInfo.length > 9) {
+    //   break;
+    // }
   }
 }
 
@@ -181,7 +183,10 @@ function gameSearchHandler(gameData) {
 
   //display search results, and add an avant listener to each result
   gameData.forEach(function (game) {
-    var gameTitleEl = $('<p>').text(game.game_name).addClass("text-white text-center").on('click', fetchReview);
+    var gameTitleEl = $("<p>")
+      .text(game.game_name)
+      .addClass("text-white text-center")
+      .on("click", fetchReview);
     searchResultContainer.append(gameTitleEl);
   });
 }
