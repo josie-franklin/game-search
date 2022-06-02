@@ -240,9 +240,45 @@ function fetchReview(gameId) {
     .then((response) => getObjKeys(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
 
-  function getObjKeys(data) {
-    reviewInfo = Object.values(data)[0];
+  function getObjKeys(info) {
+    reviewInfo = Object.values(info)[0];
     console.log(reviewInfo);
+    $('#game-container').text("");
+    $('#genre-container').text("");
+    var reviewContainerEl = $('#review-container');
+
+    //display game name data.game_name
+    var gameReviewTitleEl = $('<p>').text(reviewInfo.data.game_name);
+    reviewContainerEl.append(gameReviewTitleEl);
+
+    //display overall score
+    if(reviewInfo.data.gamerscore === null) {
+    var gameReviewTitleEl = $('<p>').text('No review score was found.');
+    } else {
+      var gameReviewTitleEl = $('<p>').text('Review Score: ', reviewInfo.data,gamerscore);
+    }
+    reviewContainerEl.append(gameReviewTitleEl);
+
+    //display individual reveiws with author, critic score, date pub, quote
+    var criticReviewContainer = $('<div>');
+    var criticReviewData = reviewInfo.data.game_critic_reviews;
+    criticReviewData.forEach(function(review){
+      //author
+      console.log(review);
+      console.log(review.author);
+      var authorEl = $('<p>').addClass('').text('Author: ' + review.author);
+      criticReviewContainer.append(authorEl);      
+      //critic score
+      var criticScoreEl = $('<p>').addClass('').text('Score: score here');
+      criticReviewContainer.append(criticScoreEl);  
+      //date published
+      var publishedEl = $('<p>').addClass('').text('Date Published: ' + review.date_published);
+      criticReviewContainer.append(publishedEl);   
+      //quote
+      var quoteEl = $('<p>').addClass('').text('Quote: ' + review.qoute);
+      criticReviewContainer.append(quoteEl); 
+    })
+    reviewContainerEl.append(criticReviewContainer);
   }
 }
 //fetches reveiw using game title as query (whattoplay API)
