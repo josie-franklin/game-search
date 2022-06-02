@@ -143,22 +143,7 @@ function genreFetchResponse(genreInput) {
           });
         }
       }
-
-      // for (j = 0; j < gameResponse.results.genres.length; j++) {
-      //   //    b. If the genre matches what we are looking for, add that to an array
-      //   // console.log(gameResponse.results.genres[0].name);
-      //   if (gameResponse.results.genres[0].name == genreInput) {
-      //     gamesInfo.push(gamesResponse.results[i]);
-      //     console.log(gamesInfo);
-      //     break;
-      //   }
-      // }
     }
-
-    // //    c. Keep looping until we have the number games we want to show (like we want to present the user with 10 action games, loop until we have 10 action games in our array)
-    // if (gamesInfo.length > 9) {
-    //   break;
-    // }
   }
 }
 
