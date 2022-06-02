@@ -19,38 +19,46 @@
       <!--Search Game Button Styles-->
       <div class="mx-auto px-10 game-container">
         <div class="flex items-center justify-start">
-        <input
-          class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
-          id="game-input"
-          type="text"
-        />
-        <button
-          class="font-sans text-slate-100 bg-cyan-700 text button"
-          id="game-btn"
-        >
-          Search Game
-        </button> </div>
+          <input
+            class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+            id="game-input"
+            type="text"
+          />
+          <button
+            class="font-sans text-slate-100 bg-cyan-700 text button"
+            id="game-btn"
+          >
+            Search Game
+          </button>
+        </div>
         <div id="game-alert-container"></div>
         <div id="game-container"></div>
       </div>
       <!--Search Genre Button Styles-->
       <div class="mx-auto px-10">
-        <div class="flex items-center justify-end">
-        <input
-          class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
-          id="genre-input"
-          type="text"
-        />
-        <button
-          class="font-sans text-slate-100 bg-cyan-700 button"
-          id="genre-btn"
-        >
-          Search Genre
-        </button> </div>
+        <label for="genre">Choose a Genre:</label>
+        <div class="flex justify-end">
+          <form genre="genre-dropdown">
+            <select class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" name="genre" id="genre">
+              <option value="" selected disabled hidden>Choose a genre</option>
+              <option value="Action">Action</option>
+              <option value="Driving/Racing">Driving/Racing</option>
+              <option value="Fighting">Fighting</option>
+              <option value="MMORPG">MMORPG</option>
+              <option value="Platformer">Platformer</option>
+              <option value="Role-Playing">Role-Playing</option>
+              <option value="Shooter">Shooter</option>
+              <option value="Sports">Sports</option>
+              <option value="Strategy">Strategy</option>
+              <option value="Trivia/Board Game">Trivia/Board Game</option>
+            </select>
+            <input class="font-sans text-slate-100 bg-cyan-700 button" id="genre-btn" type="submit" value="Submit">
+          </form>
+        </div>
         <div id="genre-alert-container"></div>
+        <main id="genre-container"></main>
       </div>
     </div>
-    <main id="container"></main>
     <!-- For jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- For native JS -->

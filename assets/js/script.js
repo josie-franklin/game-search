@@ -3,6 +3,7 @@
 
 $("#game-btn").on("click", gameInputHandler);
 $("#genre-btn").on("click", genreInputHandler);
+var gamesInfo = [];
 
 function gameInputHandler() {
   var gameInput = $("#game-input").val().trim();
@@ -59,26 +60,93 @@ function gameFetchResponse(gameInput) {
 //fetch and response handling for genre search (use a different API, probably gamebomb) (does not currently work)
 //my user key for giantbomb: 74396db661dc842e2e30773ee2aa76fbd447cbc1
 //----------------------------------------------------------------------------------------
+
+// 1. Call the genres api to get all genres (name, guid)
 function genreFetchResponse(genreInput) {
   var genreFetchUrl =
-    "https://www.giantbomb.com/api/game/3030-4725/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1"; //url works in browser bar, not in html
+    "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/genres/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&format=json&field_list=guid,name";
 
-  const options = {
+  var options = {
     method: "GET",
     headers: {
-      host: "url",
-      key: "keystring",
+      "Access-Control-Allow-Origin": "http://127.0.0.1:5500/",
+      "X-RapidAPI-Host": "https://www.giantbomb.com/api/",
+      "X-RapidAPI-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
     },
   };
 
-  fetch(genreFetchUrl)
+  fetch(genreFetchUrl, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err)); //200 error (can't connect)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.error(err));
 
   //if response works, genreSearchHandler
   //if 400, genreNotFoundHandler
+
+  // 2. Call the games api (limit 50)
+  var gamesFetchUrl =
+    "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/games/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&format=json&sort=number_of_user_reviews:desc&limit=50&field_list=guid,id,name,aliases";
+
+  options = {
+    method: "GET",
+    headers: {
+      "Access-Control-Allow-Origin": "http://127.0.0.1:5500/",
+      "X-RapidAPI-Host": "https://www.giantbomb.com/api/",
+      "X-RapidAPI-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1", //073c2f94ba69540e99d2b7e8b4cd3aebb2d9befb
+    },
+  };
+
+  fetch(gamesFetchUrl, options)
+    .then((response) => response.json())
+    .then((response) => gamesResponseHandler(response))
+    .catch((err) => console.error(err));
+
+  function gamesResponseHandler(gameResponse) {
+    $("#genre-container").text("");
+    // 3. Iterate/loop over the games that we get back
+    for (i = 0; i < 50; i++) {
+      //    a. Call Game api to get more details about the game, gives us the genre for that game
+      var gameFetchUrl =
+        "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/game/" +
+        gameResponse.results[i].guid +
+        "/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&format=json&field_list=genres,name";
+
+      options = {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "http://127.0.0.1:5500/",
+          "X-RapidAPI-Host": "https://www.giantbomb.com/api/",
+          "X-RapidAPI-Key": "74396db661dc842e2e30773ee2aa76fbd447cbc1",
+        },
+      };
+
+      fetch(gameFetchUrl, options)
+        .then((gameResponse) => gameResponse.json())
+        .then((gameResponse) => wrapperFunction(gameResponse))
+        .catch((err) => console.error(err));
+
+      function wrapperFunction(gameResponse) {
+        var gameGenres = gameResponse.results.genres;
+        if (gameGenres !== undefined) {
+          gameGenres.forEach(function (genre) {
+            if (genre.name == genreInput) {
+              console.log("match", gameResponse.results.name);
+              var genreContainer = $("#genre-container");
+              var genreTitleEl = $("<p>")
+                .text(gameResponse.results.name)
+                .addClass("text-white text-center")
+                .on("click", fetchReview);
+              genreContainer.append(genreTitleEl);
+            }
+          });
+        }
+      }
+    }
+  }
 }
+
 //----------------------------------------------------------------------------------------
 
 //gameSearchHandler
@@ -105,14 +173,17 @@ function gameSearchHandler(gameData) {
 
   //display search results, and add an avant listener to each result
   gameData.forEach(function (game) {
-    var gameTitleEl = $('<p>').text(game.game_name).addClass("text-white text-center").on('click', fetchReview);
+    var gameTitleEl = $("<p>")
+      .text(game.game_name)
+      .addClass("text-white text-center")
+      .on("click", fetchReview);
     searchResultContainer.append(gameTitleEl);
   });
 }
 
 //fetchReview
 function fetchReview() {
-  console.log('function coming soon')
+  console.log("function coming soon");
 }
 //fetches reveiw using game title as query (whattoplay API)
 //if response works, gameHandler
