@@ -104,6 +104,7 @@ function genreFetchResponse(genreInput) {
     .catch((err) => console.error(err));
 
   function gamesResponseHandler(gameResponse) {
+    $("#genre-container").text("");
     // 3. Iterate/loop over the games that we get back
     for (i = 0; i < 50; i++) {
       //    a. Call Game api to get more details about the game, gives us the genre for that game
@@ -132,8 +133,12 @@ function genreFetchResponse(genreInput) {
           gameGenres.forEach(function (genre) {
             if (genre.name == genreInput) {
               console.log("match", gameResponse.results.name);
-              // gamesInfo.push(gameResponse.results[i]);
-              // console.log(gamesInfo);
+              var genreContainer = $("#genre-container");
+              var genreTitleEl = $("<p>")
+                .text(gameResponse.results.name)
+                .addClass("text-white text-center")
+                .on("click", fetchReview);
+              genreContainer.append(genreTitleEl);
             }
           });
         }
