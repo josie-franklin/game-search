@@ -1,11 +1,38 @@
+/* <p> tag in javascript styles*/
+
 p{
     position: relative;
-    bottom: -500px;
-    left: -1100px;
+    
+    
     border-radius: 2px;
     border-width: 2px;
     border-style: ridge;
-    border-color: black;
+    border-color: cyan;
 
-    
+
+
+}
+/*Header Styles*/
+
+header{
+    color: cyan;
+
+
+
+
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+
+}
+.items-center{
+    width: 50%;
+
+}
+.button{
+    white-space: nowrap;
+    padding: 5px 5px;
+    margin-left: 5px;
 }

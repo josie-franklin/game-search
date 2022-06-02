@@ -86,7 +86,7 @@ function gameSearchHandler(gameData) {
   //empty alert container
   $("#game-alert-container").text("");
   //empty the search result container
-  var searchResultContainer = $("#container").text("");
+  var searchResultContainer = $("#game-container").text("");
   //get the searched game
   var gameSearch = $("#game-input").val().trim();
   //get the saved searches from local storage, or an empty array if there isn't one

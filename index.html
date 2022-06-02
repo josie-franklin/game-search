@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Document</title>
-</head>
-<body class="bg-slate-500">
-  <header class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono ">GAME-SEARCH
-
-  </header>
-
-  <div class="container mx-auto px-10 flex items-center row justify-start">
-  <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="game-input" type="text">
-    <button class="font-sans text-slate-100 bg-amber-300 " id="game-btn"> Search Game</button>
-    <div id="game-alert-container"></div>
-
-    <div class="container mx-auto px-10 flex items-center row justify-end">
-    <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="genre-input" type="text">
-    <button class="font-sans text-slate-100 bg-amber-300" id="genre-btn"> Search Genre</button>
-    <div id="genre-alert-container"></div>
-  </section>
-  <main id="container"></main>
-</body>
-  <!-- For jQuery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <!-- For native JS -->
-<script src="./assets/js/script.js"></script>
+  </head>
+  <body class="bg-slate-500">
+    <!--Header-->
+    <header
+      class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono"
+    >
+      GAME SEARCH
+    </header>
+    <div class="container mx-auto row">
+      <!--Search Game Button Styles-->
+      <div class="mx-auto px-10 game-container">
+        <div class="flex items-center justify-start">
+        <input
+          class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+          id="game-input"
+          type="text"
+        />
+        <button
+          class="font-sans text-slate-100 bg-cyan-700 text button"
+          id="game-btn"
+        >
+          Search Game
+        </button> </div>
+        <div id="game-alert-container"></div>
+        <div id="game-container"></div>
+      </div>
+      <!--Search Genre Button Styles-->
+      <div class="mx-auto px-10">
+        <div class="flex items-center justify-end">
+        <input
+          class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+          id="genre-input"
+          type="text"
+        />
+        <button
+          class="font-sans text-slate-100 bg-cyan-700 button"
+          id="genre-btn"
+        >
+          Search Genre
+        </button> </div>
+        <div id="genre-alert-container"></div>
+      </div>
+    </div>
+    <main id="container"></main>
+    <!-- For jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- For native JS -->
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
