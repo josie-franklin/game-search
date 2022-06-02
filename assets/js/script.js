@@ -104,7 +104,6 @@ function genreFetchResponse(genreInput) {
     .catch((err) => console.error(err));
 
   function gamesResponseHandler(gameResponse) {
-    $("#genre-container").text("");
     // 3. Iterate/loop over the games that we get back
     for (i = 0; i < 50; i++) {
       //    a. Call Game api to get more details about the game, gives us the genre for that game
@@ -137,13 +136,28 @@ function genreFetchResponse(genreInput) {
               var genreTitleEl = $("<p>")
                 .text(gameResponse.results.name)
                 .addClass("text-white text-center")
-                .on("click", fetchReview);
+                .on("click", fetchGameId);
               genreContainer.append(genreTitleEl);
             }
           });
         }
       }
+
+      // for (j = 0; j < gameResponse.results.genres.length; j++) {
+      //   //    b. If the genre matches what we are looking for, add that to an array
+      //   // console.log(gameResponse.results.genres[0].name);
+      //   if (gameResponse.results.genres[0].name == genreInput) {
+      //     gamesInfo.push(gamesResponse.results[i]);
+      //     console.log(gamesInfo);
+      //     break;
+      //   }
+      // }
     }
+
+    // //    c. Keep looping until we have the number games we want to show (like we want to present the user with 10 action games, loop until we have 10 action games in our array)
+    // if (gamesInfo.length > 9) {
+    //   break;
+    // }
   }
 }
 
@@ -176,14 +190,96 @@ function gameSearchHandler(gameData) {
     var gameTitleEl = $("<p>")
       .text(game.game_name)
       .addClass("text-white text-center")
-      .on("click", fetchReview);
+      .on("click", fetchGameId);
     searchResultContainer.append(gameTitleEl);
   });
 }
 
-//fetchReview
-function fetchReview() {
-  console.log("function coming soon");
+//fetchGameId
+function fetchGameId(event) {
+  var clickedGameTitle = event.target.textContent;
+  var reviewFetchUrl =
+    "https://whatoplay.p.rapidapi.com/search?game=" + clickedGameTitle;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Host": "whatoplay.p.rapidapi.com",
+      "X-RapidAPI-Key": "29b518b889msh6fc361b3b9aec26p1e1231jsnc655b8c71d9a",
+    },
+  };
+
+  fetch(reviewFetchUrl, options)
+    .then((response) => response.json())
+    .then((response) => getGameId(response))
+    .catch((err) => console.error(err)); //200 error (can't connect)
+}
+
+function getGameId(data) {
+  dataArray = data;
+  dataArray.sort(function (a, b) {
+    return a.gamerscore - b.gamerscore;
+  });
+  fetchReview(dataArray[0].game_id);
+}
+
+function fetchReview(gameId) {
+  var reviewFetchUrl =
+    "https://whatoplay.p.rapidapi.com/game/critics?game_id=" + gameId;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Host": "whatoplay.p.rapidapi.com",
+      "X-RapidAPI-Key": "29b518b889msh6fc361b3b9aec26p1e1231jsnc655b8c71d9a",
+    },
+  };
+
+  fetch(reviewFetchUrl, options)
+    .then((response) => response.json())
+    .then((response) => getObjKeys(response))
+    .catch((err) => console.error(err)); //200 error (can't connect)
+
+  function getObjKeys(info) {
+    reviewInfo = Object.values(info)[0];
+    console.log(reviewInfo);
+    $('#game-container').text("");
+    $('#genre-container').text("");
+    var reviewContainerEl = $('#review-container');
+
+    //display game name data.game_name
+    var gameReviewTitleEl = $('<p>').text(reviewInfo.data.game_name);
+    reviewContainerEl.append(gameReviewTitleEl);
+
+    //display overall score
+    if(reviewInfo.data.gamerscore === null) {
+    var gameReviewTitleEl = $('<p>').text('No review score was found.');
+    } else {
+      var gameReviewTitleEl = $('<p>').text('Review Score: ', reviewInfo.data,gamerscore);
+    }
+    reviewContainerEl.append(gameReviewTitleEl);
+
+    //display individual reveiws with author, critic score, date pub, quote
+    var criticReviewContainer = $('<div>');
+    var criticReviewData = reviewInfo.data.game_critic_reviews;
+    criticReviewData.forEach(function(review){
+      //author
+      console.log(review);
+      console.log(review.author);
+      var authorEl = $('<p>').addClass('').text('Author: ' + review.author);
+      criticReviewContainer.append(authorEl);      
+      //critic score
+      var criticScoreEl = $('<p>').addClass('').text('Score: score here');
+      criticReviewContainer.append(criticScoreEl);  
+      //date published
+      var publishedEl = $('<p>').addClass('').text('Date Published: ' + review.date_published);
+      criticReviewContainer.append(publishedEl);   
+      //quote
+      var quoteEl = $('<p>').addClass('').text('Quote: ' + review.qoute);
+      criticReviewContainer.append(quoteEl); 
+    })
+    reviewContainerEl.append(criticReviewContainer);
+  }
 }
 //fetches reveiw using game title as query (whattoplay API)
 //if response works, gameHandler
