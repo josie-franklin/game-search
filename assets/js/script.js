@@ -237,8 +237,13 @@ function fetchReview(gameId) {
 
   fetch(reviewFetchUrl, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
+    .then((response) => getObjKeys(response))
     .catch((err) => console.error(err)); //200 error (can't connect)
+
+  function getObjKeys(data) {
+    reviewInfo = Object.values(data)[0];
+    console.log(reviewInfo);
+  }
 }
 //fetches reveiw using game title as query (whattoplay API)
 //if response works, gameHandler
