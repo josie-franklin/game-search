@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e45f53e37d.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <title>Document</title>
+    <title>Game Search</title>
   </head>
-  <body class="bg-slate-500">
+  <body class="bg-cyan-600">
     <!--Header-->
     <header
       class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono"
     >
-      GAME SEARCH
+      <i class="fa-solid fa-gamepad icon"></i>
+      <div class="text-cyan-900 header-font">GAME SEARCH</div>
+      <i class="fa-solid fa-gamepad icon"></i>
     </header>
     <div class="container mx-auto row">
       <!--Search Game Button Styles-->
@@ -38,7 +44,11 @@
       <div class="mx-auto px-10">
         <div class="flex justify-end">
           <form genre="genre-dropdown">
-            <select class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" name="genre" id="genre">
+            <select
+              class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+              name="genre"
+              id="genre"
+            >
               <option value="" selected disabled hidden>Choose a genre</option>
               <option value="Action">Action</option>
               <option value="Driving/Racing">Driving/Racing</option>
@@ -51,13 +61,19 @@
               <option value="Strategy">Strategy</option>
               <option value="Trivia/Board Game">Trivia/Board Game</option>
             </select>
-            <input class="font-sans text-slate-100 bg-cyan-700 button" id="genre-btn" type="submit" value="Submit">
+            <input
+              class="font-sans text-slate-100 bg-cyan-700 button"
+              id="genre-btn"
+              type="submit"
+              value="Submit"
+            />
           </form>
         </div>
         <div id="genre-alert-container"></div>
         <main id="genre-container"></main>
       </div>
     </div>
+
     <div id="review-container"></div>
     <!-- For jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

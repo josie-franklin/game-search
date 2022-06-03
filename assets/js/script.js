@@ -189,7 +189,7 @@ function gameSearchHandler(gameData) {
   gameData.forEach(function (game) {
     var gameTitleEl = $("<p>")
       .text(game.game_name)
-      .addClass("text-white text-center")
+      .addClass(" bg-black from-slate-50 text-white text-center")
       .on("click", fetchGameId);
     searchResultContainer.append(gameTitleEl);
   });
