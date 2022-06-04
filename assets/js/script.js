@@ -18,9 +18,10 @@ function gameInputHandler() {
   }
 }
 
-function genreInputHandler() {
-  $('#review-container').text("");
-  var genreInput = $("#genre-input").val().trim();
+
+function genreInputHandler(event) {
+  event.preventDefault();
+  var genreInput = $("#genre").val();
   if (genreInput === "" || null) {
     //alert text if nothing is inputted
     var genreAlertContainerEl = $("#genre-alert-container").text("");
@@ -191,7 +192,7 @@ function gameSearchHandler(gameData) {
   gameData.forEach(function (game) {
     var gameTitleEl = $("<p>")
       .text(game.game_name)
-      .addClass("text-white text-center")
+      .addClass(" bg-black from-slate-50 text-white text-center")
       .on("click", fetchGameId);
     searchResultContainer.append(gameTitleEl);
   });
