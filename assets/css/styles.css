@@ -1,8 +1,4 @@
-.body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 /*Header Styles*/
  
 .container{
@@ -30,8 +26,9 @@
 }
 .header-font{
     font-family: Verdana, Geneva, Tahoma, sans-serif
-    
+
 }
+/* Icon-button styles*/
 
 .intro-container{
 
@@ -39,13 +36,14 @@ margin-top: 20%;
 position: relative;
 width: 900px;
 height: 720px;
+left: -500px;
 
 }
 .box{
     position: relative;
     width: 275px;
     height: 175px;
-    background-color:grey ;
+    background-color: rgb(156 163 175) ;
     float: left;
     border-radius: 10px;
     margin: 0 15px;
@@ -101,4 +99,13 @@ height: 720px;
     margin: 0 0 10px;
     font-size:medium;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+.header-style{
+
+    background-size: cover;
+}
+.dropdown-font{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
