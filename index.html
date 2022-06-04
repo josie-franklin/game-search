@@ -14,15 +14,17 @@
   </head>
   <body class="bg-cyan-600">
     <!--Header-->
-    <header
-      class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono"
-    >
-      <i class="fa-solid fa-gamepad icon"></i>
+    <header 
+      class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono w-full h-full"> 
+      <i class="	fas fa-headset"></i>
       <div class="text-cyan-900 header-font">GAME SEARCH</div>
-      <i class="fa-solid fa-gamepad icon"></i>
+      <i class="fas fa-headset"></i>
     </header>
     <div class="container mx-auto row">
+     <!--Intro-->
+     
       <!--Search Game Button Styles-->
+     
       <div class="mx-auto px-10 game-container">
         <div class="flex items-center justify-start">
           <input
@@ -72,10 +74,44 @@
         <div id="genre-alert-container"></div>
         <main id="genre-container"></main>
       </div>
-    </div>
+
 
     <div id="review-container"></div>
-    <!-- For jQuery -->
+   <!--Content box "Search for your favorite game"-->
+   
+   <div class="intro-container">
+     <div class="box">
+  <div class="icon-two">
+  <i class="fa fa-gamepad"></i> 
+</div>
+  <div class="content">
+  <h2>Search for your favorite games above!</h2>
+   </div>
+</div>
+</div>
+<!--Content box "Save your favorite game"-->
+<div class="intro-container">
+  <div class="box">
+<div class="icon-two">
+<i class="fa fa-floppy-disk"></i> 
+</div>
+<div class="content">
+<h2>Save  your favorite games!</h2>
+</div>
+</div>
+</div><!--Content box "Search for videos of your favorite games"-->
+<div class="intro-container">
+<div class="box">
+<div class="icon-two">
+<i class="fa fa-video"></i> 
+</div>
+<div class="content">
+<h2>Search for videos of top streamers playing!</h2>
+</div>
+</div>
+</div>
+
+<!-- For jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- For native JS -->
     <script src="./assets/js/script.js"></script>
