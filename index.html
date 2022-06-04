@@ -65,7 +65,10 @@
     </div>
 
     <!-- Saved Games -->
-    <div id="saved-games" class="container mx-auto flex flex-row-reverse justify-center">
+    <div
+      id="saved-games"
+      class="container mx-auto flex flex-row-reverse justify-center"
+    >
       <!-- Dynamically displayed saved games go here -->
     </div>
 
@@ -83,9 +86,9 @@
             class="font-sans text-slate-100 bg-gray-400 text button"
             id="game-btn"
           >
+            <i class="fas fa-search text-white"></i>
             Search Game
           </button>
-          <i class="fas fa-search text-white"></i>
         </div>
         <div id="game-alert-container"></div>
         <div id="game-container"></div>
@@ -111,12 +114,13 @@
               <option value="Strategy">Strategy</option>
               <option value="Trivia/Board Game">Trivia/Board Game</option>
             </select>
-            <input
-              class="font-sans text-slate-100 bg-gray-400 button"
+            <button
+              class="font-sans text-slate-100 bg-gray-400 text button"
               id="genre-btn"
-              type="submit"
-              value="Submit"
-            />
+            >
+              <i class="fas fa-search text-white"></i>
+              Search Genre
+            </button>
           </form>
         </div>
         <div id="genre-alert-container"></div>

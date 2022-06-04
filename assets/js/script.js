@@ -1,4 +1,4 @@
-//init function that displays previous searches from local storage
+//init function thats called as the page loads. Displays previously saved games.
 function init() {
   // get the saved game array
   var savedGamesObj = JSON.parse(localStorage.getItem("savedGamesObj")) || [];
@@ -16,6 +16,7 @@ init();
 $("#game-btn").on("click", gameInputHandler);
 $("#genre-btn").on("click", genreInputHandler);
 
+// Check for a game input. Alert or carry on.
 function gameInputHandler() {
   $("#review-container").text("");
   var gameInput = $("#game-input").val().trim();
@@ -29,6 +30,7 @@ function gameInputHandler() {
   }
 }
 
+// Check for a genre input. Alert or carry on.
 function genreInputHandler(event) {
   event.preventDefault();
   var genreInput = $("#genre").val();
@@ -42,7 +44,7 @@ function genreInputHandler(event) {
   }
 }
 
-//fetch and response handling for game search (use one API)
+//Fetch and response handling for game search (uses what-to-play API)
 function gameFetchResponse(gameInput) {
   var fetchUrl = "https://whatoplay.p.rapidapi.com/search?game=" + gameInput;
 
@@ -70,9 +72,10 @@ function gameFetchResponse(gameInput) {
   }
 }
 
-//my user key for giantbomb: 74396db661dc842e2e30773ee2aa76fbd447cbc1
-// 1. Call the genres api to get all genres (name, guid)
+//Fetch and response handling for game search (uses GiantBomb API)
+//User key for GiantBomb: 74396db661dc842e2e30773ee2aa76fbd447cbc1
 function genreFetchResponse(genreInput) {
+  // 1. Call the genres api to get all genres (name, guid)
   var genreFetchUrl =
     "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/genres/?api_key=74396db661dc842e2e30773ee2aa76fbd447cbc1&format=json&field_list=guid,name";
 
@@ -152,7 +155,7 @@ function genreFetchResponse(genreInput) {
   }
 }
 
-//gameSearchHandler
+//Displays the results for the games search bar
 function gameSearchHandler(gameData) {
   //empty alert container
   $("#game-alert-container").text("");
@@ -190,6 +193,7 @@ function fetchGameId(event) {
     .catch((err) => console.error(err)); //200 error (can't connect)
 }
 
+// Saves and makes buttons for new saved games
 function createSavedGameButton(gameTitle) {
   //get the saved searches from local storage, or an empty array if there isn't one
   var savedGamesObj = JSON.parse(localStorage.getItem("savedGamesObj")) || [];
@@ -223,6 +227,7 @@ function createSavedGameButton(gameTitle) {
   }
 }
 
+// Sorts results for the game platform to find the highest rated one
 function getGameId(data) {
   dataArray = data;
   dataArray.sort(function (a, b) {
@@ -231,6 +236,7 @@ function getGameId(data) {
   fetchReview(dataArray[0].game_id);
 }
 
+// fetches and displays the review
 function fetchReview(gameId) {
   var reviewFetchUrl =
     "https://whatoplay.p.rapidapi.com/game/critics?game_id=" + gameId;
