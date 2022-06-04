@@ -18,7 +18,8 @@ function gameInputHandler() {
   }
 }
 
-function genreInputHandler() {
+function genreInputHandler(event) {
+  event.preventDefault();
   $('#review-container').text("");
   var genreInput = $("#genre-dropdown-input").val();
   if (genreInput === "" || null) {
