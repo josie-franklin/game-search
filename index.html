@@ -1,104 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/e45f53e37d.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./assets/css/styles.css" />
-  <title>Game Search</title>
-</head>
-<body class="bg-cyan-600">
-  <!--Header-->
-  <header class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono w-full h-full header-style">
-    <div id="header-wrapper" class="container row justify-center">
-      <div class="text-cyan-600 header-font">GAMESEARCH</div>
-      <i class="text-cyan-600 fas fa-gamepad"></i>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e45f53e37d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Game Search</title>
+  </head>
+  <body class="bg-cyan-600">
+    <!--Header-->
+    <header
+      class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono w-full h-full header-style"
+    >
+      <div id="header-wrapper" class="container row justify-center">
+        <div class="text-cyan-600 header-font">GAMESEARCH</div>
+        <i class="text-cyan-600 fas fa-gamepad"></i>
+      </div>
+    </header>
+
+    <!-- Content Boxes -->
+    <div class="container mx-auto row justify-center">
+      <!--Content box "Search for your favorite game"-->
+      <div class="intro-container">
+        <div class="box">
+          <div class="icon-two">
+            <i class="fa fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div class="content">
+            <h2 class="text-cyan-900">Search for your favorite games above!</h2>
+          </div>
+        </div>
+      </div>
+      <!--Content box "Save your favorite game"-->
+      <div class="intro-container">
+        <div class="box">
+          <div class="icon-two">
+            <i class="fa fa-heart"></i>
+          </div>
+          <div class="content">
+            <h2 class="text-cyan-900">
+              Save your favorite games and make a wish list!
+            </h2>
+          </div>
+        </div>
+      </div>
+      <!--Content box "Search for videos of your favorite games"-->
+      <div class="intro-container">
+        <div class="box">
+          <div class="icon-two">
+            <i class="fa fa-video"></i>
+          </div>
+          <div class="content">
+            <h2 class="text-cyan-900">
+              Search for top streamers playing! (coming soon)
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
 
-  </header>
+    <!-- Saved Games -->
+    <div id="saved-games" class="container mx-auto flex flex-row-reverse justify-center">
+      <!-- Dynamically displayed saved games go here -->
+    </div>
 
-  <div class="container mx-auto row justify-center">
-    <div class="intro-container">
-      <div class="box">
-        <div class="icon-two">
-          <i class="fa fa-solid fa-magnifying-glass"></i>
+    <!-- Search Inputs and Buttons -->
+    <div class="container mx-auto row">
+      <!--Search Game Button Styles-->
+      <div class="mx-auto px-10 game-container">
+        <div class="flex items-center justify-start">
+          <input
+            class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+            id="game-input"
+            type="text"
+          />
+          <button
+            class="font-sans text-slate-100 bg-gray-400 text button"
+            id="game-btn"
+          >
+            Search Game
+          </button>
+          <i class="fas fa-search text-white"></i>
         </div>
-        <div class="content">
-          <h2 class="text-cyan-900">Search for your favorite games above!</h2>
+        <div id="game-alert-container"></div>
+        <div id="game-container"></div>
+      </div>
+      <!--Search Genre Button Styles-->
+      <div class="mx-auto px-10">
+        <div class="flex justify-end">
+          <form genre="genre-dropdown">
+            <select
+              class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
+              name="genre"
+              id="genre"
+            >
+              <option value="" selected disabled hidden>Choose a genre</option>
+              <option value="Action">Action</option>
+              <option value="Driving/Racing">Driving/Racing</option>
+              <option value="Fighting">Fighting</option>
+              <option value="MMORPG">MMORPG</option>
+              <option value="Platformer">Platformer</option>
+              <option value="Role-Playing">Role-Playing</option>
+              <option value="Shooter">Shooter</option>
+              <option value="Sports">Sports</option>
+              <option value="Strategy">Strategy</option>
+              <option value="Trivia/Board Game">Trivia/Board Game</option>
+            </select>
+            <input
+              class="font-sans text-slate-100 bg-gray-400 button"
+              id="genre-btn"
+              type="submit"
+              value="Submit"
+            />
+          </form>
         </div>
+        <div id="genre-alert-container"></div>
+        <main id="genre-container"></main>
       </div>
     </div>
-    <!--Content box "Save your favorite game"-->
-    <div class="intro-container">
-      <div class="box">
-        <div class="icon-two">
-          <i class="fa fa-heart"></i>
-        </div>
-        <div class="content">
-          <h2 class="text-cyan-900">Save your favorite games and make a wish list!</h2>
-        </div>
-      </div>
+
+    <!-- Review Container -->
+    <div id="review-container">
+      <!-- Dynamically displayed reviews go here -->
     </div>
-    <!--Content box "Search for videos of your favorite games"-->
-    <div class="intro-container">
-      <div class="box">
-        <div class="icon-two">
-          <i class="fa fa-video"></i>
-        </div>
-        <div class="content">
-          <h2 class="text-cyan-900">Search for videos of top streamers playing!</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container mx-auto row">
-    <!--Intro-->
-    <!--Search Game Button Styles-->
-    <div class="mx-auto px-10 game-container">
-      <div class="flex items-center justify-start">
-        <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="game-input"
-          type="text" />
-        <button class="font-sans text-slate-100 bg-gray-400 text button" id="game-btn">
-          Search Game
-        </button>
-        <i class="fas fa-search text-white"></i>
-      </div>
-      <div id="game-alert-container"></div>
-      <div id="game-container"></div>
-    </div>
-    <!--Search Genre Button Styles-->
-    <div class="mx-auto px-10">
-      <div class="flex justify-end">
-        <form genre="genre-dropdown">
-          <select class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" name="genre"
-            id="genre">
-            <option value="" selected disabled hidden>Choose a genre</option>
-            <option value="Action">Action</option>
-            <option value="Driving/Racing">Driving/Racing</option>
-            <option value="Fighting">Fighting</option>
-            <option value="MMORPG">MMORPG</option>
-            <option value="Platformer">Platformer</option>
-            <option value="Role-Playing">Role-Playing</option>
-            <option value="Shooter">Shooter</option>
-            <option value="Sports">Sports</option>
-            <option value="Strategy">Strategy</option>
-            <option value="Trivia/Board Game">Trivia/Board Game</option>
-          </select>
-          <input class="font-sans text-slate-100 bg-gray-400 button" id="genre-btn" type="submit" value="Submit" />
-        </form>
-      </div>
-      <div id="genre-alert-container"></div>
-      <main id="genre-container"></main>
-    </div>
-    </div>
-   
-    <div id="review-container"></div>
-    <!--Content box "Search for your favorite game"-->
+
     <!-- For jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- For native JS -->
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
