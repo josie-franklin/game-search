@@ -1,4 +1,3 @@
-
 /*Header Styles*/
 header {
     background-image: url("../images/arcade.jpg");
@@ -14,22 +13,19 @@ header {
     padding: 5px;
     width: fit-content;
 }
- 
+
 .container{
     display: flex;
     flex-direction: row;
-
 }
 .items-center{
     width: 50%;
-
 }
 .button{
     white-space: nowrap;
     padding: 5px 5px;
     margin-left: 5px;
 }
-
 .type{
     white-space: nowrap;
     padding: 5px 5px;
@@ -40,12 +36,9 @@ header {
 }
 .header-font{
     font-family: Verdana, Geneva, Tahoma, sans-serif
-
 }
 /* Icon-button styles*/
-
 .intro-container{
-
 margin: 20px;
 }
 .box{
@@ -67,7 +60,6 @@ margin: 20px;
     transition: 0.5s;
     background-color: grey;
     
-
 }
 .box:hover .icon-two{
     width: 70px;
@@ -98,7 +90,6 @@ margin: 20px;
     height: calc(100% - 100px);
     transition: 0.5s;
     opacity: 0;
-
 }
 .box:hover .content{
     opacity: 1;
@@ -111,7 +102,6 @@ margin: 20px;
     
 }
 .header-style{
-
     background-size: cover;
 }
 .dropdown-font{

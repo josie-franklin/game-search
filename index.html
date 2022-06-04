@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +9,16 @@
   <link rel="stylesheet" href="./assets/css/styles.css" />
   <title>Game Search</title>
 </head>
-
 <body class="bg-cyan-600">
   <!--Header-->
   <header class="container mx-auto px-0.5 flex items-center justify-center text-8xl font-mono w-full h-full header-style">
-    <div class="text-white header-font">GAMESEARCH</div>
-    <i class="text-white fas fa-gamepad"></i>
+    <div id="header-wrapper" class="container row justify-center">
+      <div class="text-cyan-600 header-font">GAMESEARCH</div>
+      <i class="text-cyan-600 fas fa-gamepad"></i>
+    </div>
+
   </header>
-  
+
   <div class="container mx-auto row justify-center">
     <div class="intro-container">
       <div class="box">
@@ -25,7 +26,7 @@
           <i class="fa fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="content">
-          <h2 class="text-cyan-700">Search for your favorite games above!</h2>
+          <h2 class="text-cyan-900">Search for your favorite games above!</h2>
         </div>
       </div>
     </div>
@@ -36,7 +37,7 @@
           <i class="fa fa-heart"></i>
         </div>
         <div class="content">
-          <h2 class="text-cyan-700">Save your favorite games and make a wish list!</h2>
+          <h2 class="text-cyan-900">Save your favorite games and make a wish list!</h2>
         </div>
       </div>
     </div>
@@ -47,17 +48,14 @@
           <i class="fa fa-video"></i>
         </div>
         <div class="content">
-          <h2 class="text-cyan-700">Search for videos of top streamers playing!</h2>
+          <h2 class="text-cyan-900">Search for videos of top streamers playing!</h2>
         </div>
       </div>
     </div>
   </div>
-
   <div class="container mx-auto row">
     <!--Intro-->
-
     <!--Search Game Button Styles-->
-
     <div class="mx-auto px-10 game-container">
       <div class="flex items-center justify-start">
         <input class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100" id="game-input"
@@ -95,19 +93,12 @@
       <main id="genre-container"></main>
     </div>
     </div>
-
    
-
     <div id="review-container"></div>
     <!--Content box "Search for your favorite game"-->
-
-
-
-
     <!-- For jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- For native JS -->
     <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
