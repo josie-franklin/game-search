@@ -1,5 +1,19 @@
 
 /*Header Styles*/
+header {
+    background-image: url("../images/arcade.jpg");
+    background-size: cover;
+    background-position: center;
+    background-position: center top;
+    padding: 3vw;
+}
+
+#header-wrapper {
+    background-color: white;
+    border-radius: 7px;
+    padding: 5px;
+    width: fit-content;
+}
  
 .container{
     display: flex;
