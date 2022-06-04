@@ -17,8 +17,9 @@ function gameInputHandler() {
   }
 }
 
-function genreInputHandler() {
-  var genreInput = $("#genre-input").val().trim();
+function genreInputHandler(event) {
+  event.preventDefault();
+  var genreInput = $("#genre").val();
   if (genreInput === "" || null) {
     //alert text if nothing is inputted
     var genreAlertContainerEl = $("#genre-alert-container").text("");
