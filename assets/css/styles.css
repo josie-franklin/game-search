@@ -30,6 +30,7 @@
 }
 .header-font{
     font-family: Verdana, Geneva, Tahoma, sans-serif
+    
 }
 
 .intro-container{
@@ -99,6 +100,5 @@ height: 720px;
 .box:hover .content h2{
     margin: 0 0 10px;
     font-size:medium;
-    color: white;
-
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
