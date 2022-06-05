@@ -156,24 +156,28 @@ function genreFetchResponse(genreInput) {
   }
 }
 
-//Displays the results for the games search bar
+// Displays the results for the games search bar
 function gameSearchHandler(gameData) {
   //empty alert container
   $("#game-alert-container").text("");
   //empty the search result container
   var searchResultContainer = $("#game-container").text("");
+  var gameCheck = []
 
-  //display search results, and add an avant listener to each result
+  // Add search results to the page if the game_name is not already in the gameCheck array, and add an event listener to each result
   gameData.forEach(function (game) {
-    var gameTitleEl = $("<p>")
-      .text(game.game_name)
-      .addClass("text-white text-center")
-      .on("click", fetchGameId);
-    searchResultContainer.append(gameTitleEl);
+      if (!gameCheck.includes(game.game_name)) {
+        gameCheck.push(game.game_name);
+        var gameTitleEl = $("<p>")
+        .text(game.game_name)
+        .addClass("text-white text-center")
+        .on("click", fetchGameId);
+        searchResultContainer.append(gameTitleEl);
+      }
   });
 }
 
-//fetchGameId
+// fetchGameId
 function fetchGameId(event) {
   var clickedGameTitle = event.target.textContent;
   createSavedGameButton(clickedGameTitle);
