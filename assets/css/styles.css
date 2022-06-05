@@ -14,6 +14,10 @@ header {
     width: fit-content;
 }
 
+#saved-games button {
+    margin: 5px;
+}
+
 .container{
     display: flex;
     flex-direction: row;
@@ -108,4 +112,66 @@ margin: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
     
     
+}
+
+@media screen and (max-width: 1024px) {
+
+    #content-box-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #header-wrapper {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #search-bars {
+        flex-direction: column;
+    }
+
+    .search-wrapper {
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    header{
+        background-image: none;
+    }
+
+    #header-wrapper {
+        font-size: 35px;
+    }
+
+    #saved-games button {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 369px) {
+    #header-wrapper {
+        font-size: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    #game-input-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -24,7 +24,7 @@
     </header>
 
     <!-- Content Boxes -->
-    <div class="container mx-auto row justify-center">
+    <div id="content-box-container" class="container mx-auto row justify-center">
       <!--Content box "Search for your favorite game"-->
       <div class="intro-container">
         <div class="box">
@@ -67,16 +67,16 @@
     <!-- Saved Games -->
     <div
       id="saved-games"
-      class="container mx-auto flex flex-row-reverse justify-center"
+      class="container mx-auto flex flex-wrap-reverse justify-center"
     >
       <!-- Dynamically displayed saved games go here -->
     </div>
 
     <!-- Search Inputs and Buttons -->
-    <div class="container mx-auto row">
+    <div id="search-bars" class="container mx-auto row">
       <!--Search Game Button Styles-->
-      <div class="mx-auto px-10 game-container">
-        <div class="flex items-center justify-start">
+      <div class="search-wrapper mx-auto px-10 game-container">
+        <div id="game-input-wrapper" class="flex items-center justify-start">
           <input
             class="rounded-sm border-2 border-slate-500 border-double border-6 border-emerald-100"
             id="game-input"
@@ -94,7 +94,7 @@
         <div id="game-container"></div>
       </div>
       <!--Search Genre Button Styles-->
-      <div class="mx-auto px-10">
+      <div class="search-wrapper mx-auto px-10">
         <div class="flex justify-end">
           <form genre="genre-dropdown">
             <select
