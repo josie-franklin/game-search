@@ -18,6 +18,9 @@ Welcome to our Project 1! Project 1 expalins the skills and knowledge to build w
 * HTML
 * CSS
 * Javscript
+* Tailwind CSS
+* FontAwesome
+
 
 
 ## Key Topics
@@ -25,6 +28,7 @@ Welcome to our Project 1! Project 1 expalins the skills and knowledge to build w
 * Server-side APIs
 * Git branching workflow
 * Agile software development
+* CSS Framework
 
 
 ## Comprehension Check
@@ -46,7 +50,7 @@ You will be employer-competitive if you are able to:
 * Prepare a professional presentation and repository README for your project
 
 ## Screenshot:
-<img src="images/arcade.jpg" width="100" height="100" >
+<img width="1440" alt="Screen Shot 2022-06-05 at 7 24 51 PM" src="https://user-images.githubusercontent.com/103685355/172074917-ecf82570-8610-434c-b30c-766bae5c1632.png">
 
 
 ## Project 1: Game Search Links:
