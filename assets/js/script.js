@@ -6,6 +6,7 @@ function init() {
     var savedGameContainer = $("#saved-games");
     var newSavedGameButton = $("<button>")
       .text(game)
+      .addClass("font-sans text-slate-100 bg-gray-400 text button")
       .attr("id", game)
       .on("click", fetchGameId);
     savedGameContainer.append(newSavedGameButton);
@@ -166,7 +167,7 @@ function gameSearchHandler(gameData) {
   gameData.forEach(function (game) {
     var gameTitleEl = $("<p>")
       .text(game.game_name)
-      .addClass(" bg-black from-slate-50 text-white text-center")
+      .addClass("text-white text-center")
       .on("click", fetchGameId);
     searchResultContainer.append(gameTitleEl);
   });
@@ -213,6 +214,7 @@ function createSavedGameButton(gameTitle) {
     var newSavedGameButton = $("<button>")
       .text(gameTitle)
       .attr("id", gameTitle)
+      .addClass("font-sans text-slate-100 bg-gray-400 text button")
       .on("click", fetchGameId);
     savedGameContainer.append(newSavedGameButton);
   } else {
@@ -221,6 +223,7 @@ function createSavedGameButton(gameTitle) {
     var savedGameContainer = $("#saved-games");
     var newSavedGameButton = $("<button>")
       .text(gameTitle)
+      .addClass("font-sans text-slate-100 bg-gray-400 text button")
       .attr("id", gameTitle)
       .on("click", fetchGameId);
     savedGameContainer.append(newSavedGameButton);
