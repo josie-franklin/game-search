@@ -115,6 +115,8 @@ function genreFetchResponse(genreInput) {
     .catch((err) => console.error(err));
 
   function gamesResponseHandler(gameResponse) {
+    var genreContainer = $("#genre-container");
+    genreContainer.text("")
     // 3. Iterate/loop over the games that we get back
     for (i = 0; i < 50; i++) {
       //    a. Call Game api to get more details about the game, gives us the genre for that game
@@ -134,46 +136,51 @@ function genreFetchResponse(genreInput) {
 
       fetch(gameFetchUrl, options)
         .then((gameResponse) => gameResponse.json())
-        .then((gameResponse) => wrapperFunction(gameResponse))
+        .then((gameResponse) => wrapperFunction(gameResponse, genreInput))
         .catch((err) => console.error(err));
 
-      function wrapperFunction(gameResponse) {
-        var gameGenres = gameResponse.results.genres;
-        if (gameGenres !== undefined) {
-          gameGenres.forEach(function (genre) {
-            if (genre.name == genreInput) {
-              var genreContainer = $("#genre-container");
-              var genreTitleEl = $("<p>")
-                .text(gameResponse.results.name)
-                .addClass("text-white text-center")
-                .on("click", fetchGameId);
-              genreContainer.append(genreTitleEl);
-            }
-          });
-        }
-      }
+
     }
   }
 }
+function wrapperFunction(gameResponse, genreInput) {
+  var gameGenres = gameResponse.results.genres;
+  if (gameGenres !== undefined) {
+    gameGenres.forEach(function (genre) {
+      if (genre.name == genreInput) {
+        var genreContainer = $("#genre-container");
+        var genreTitleEl = $("<p>")
+          .text(gameResponse.results.name)
+          .addClass("text-white text-center")
+          .on("click", fetchGameId);
+        genreContainer.append(genreTitleEl);
+      }
+    });
+  }
+}
 
-//Displays the results for the games search bar
+// Displays the results for the games search bar
 function gameSearchHandler(gameData) {
   //empty alert container
   $("#game-alert-container").text("");
   //empty the search result container
   var searchResultContainer = $("#game-container").text("");
+  var gameCheck = []
 
-  //display search results, and add an avant listener to each result
+  // Add search results to the page if the game_name is not already in the gameCheck array, and add an event listener to each result
   gameData.forEach(function (game) {
-    var gameTitleEl = $("<p>")
-      .text(game.game_name)
-      .addClass("text-white text-center")
-      .on("click", fetchGameId);
-    searchResultContainer.append(gameTitleEl);
+    if (!gameCheck.includes(game.game_name)) {
+      gameCheck.push(game.game_name);
+      var gameTitleEl = $("<p>")
+        .text(game.game_name)
+        .addClass("text-white text-center")
+        .on("click", fetchGameId);
+      searchResultContainer.append(gameTitleEl);
+    }
   });
 }
 
-//fetchGameId
+// fetchGameId
 function fetchGameId(event) {
   var clickedGameTitle = event.target.textContent;
   createSavedGameButton(clickedGameTitle);

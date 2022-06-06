@@ -22,6 +22,11 @@ header {
     display: flex;
     flex-direction: row;
 }
+#review-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .items-center{
     width: 50%;
 }
@@ -108,11 +113,13 @@ margin: 20px;
 .header-style{
     background-size: cover;
 }
-.dropdown-font{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
-    
-    
+#genre-container { 
+    cursor: pointer; 
 }
+#game-container { 
+    cursor: pointer; 
+}
+
 
 @media screen and (max-width: 1024px) {
 
